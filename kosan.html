@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Rules - Kost Gen Z</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .font-display {
+            font-family: 'Syne', sans-serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #FF6B6B;
+            border-radius: 4px;
+        }
+
+        /* Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(2deg);
+            }
+        }
+
+        @keyframes wiggle {
+
+            0%,
+            100% {
+                transform: rotate(-3deg);
+            }
+
+            50% {
+                transform: rotate(3deg);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse-border {
+
+            0%,
+            100% {
+                border-width: 3px;
+            }
+
+            50% {
+                border-width: 6px;
+            }
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .animate-wiggle {
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        .animate-slide-in {
+            animation: slideIn 0.5s ease-out forwards;
+        }
+
+        .animate-gradient {
+            background-size: 200% 200%;
+            animation: gradient-shift 5s ease infinite;
+        }
+
+        /* Neo-Brutalism Shadow */
+        .brutal-shadow {
+            box-shadow: 8px 8px 0px 0px #000000;
+            transition: all 0.2s ease;
+        }
+
+        .brutal-shadow:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 10px 10px 0px 0px #000000;
+        }
+
+        .brutal-shadow-sm {
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+
+        /* Category Colors */
+        .bg-accent-yellow {
+            background-color: #FFE66D;
+        }
+
+        .bg-accent-pink {
+            background-color: #FF6B9D;
+        }
+
+        .bg-accent-cyan {
+            background-color: #4ECDC4;
+        }
+
+        .bg-accent-orange {
+            background-color: #FF8C42;
+        }
+
+        .bg-accent-purple {
+            background-color: #9B5DE5;
+        }
+
+        .bg-accent-green {
+            background-color: #95E1D3;
+        }
+
+        /* Pattern Backgrounds */
+        .pattern-dots {
+            background-image: radial-gradient(#000 2px, transparent 2px);
+            background-size: 20px 20px;
+        }
+
+        .pattern-lines {
+            background: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(0, 0, 0, 0.1) 10px,
+                    rgba(0, 0, 0, 0.1) 20px);
+        }
+
+        /* Interactive Card */
+        .rule-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .rule-card:hover {
+            transform: scale(1.02) rotate(-1deg);
+            z-index: 10;
+        }
+
+        .rule-card.active {
+            transform: scale(1.05);
+            z-index: 20;
+            box-shadow: 8px 8px 0px 0px #000000;
+        }
+
+        /* Payment Section - ENHANCED */
+        .payment-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background-size: 400% 400%;
+            animation: gradient-shift 8s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .payment-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255, 255, 255, 0.15) 35px, rgba(255, 255, 255, 0.15) 70px),
+                repeating-linear-gradient(-45deg, transparent, transparent 35px, rgba(0, 0, 0, 0.05) 35px, rgba(0, 0, 0, 0.05) 70px);
+            pointer-events: none;
+        }
+
+        .payment-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 4px solid #000;
+            position: relative;
+            z-index: 10;
+        }
+
+        .account-number-box {
+            background: #000;
+            color: #fff;
+            font-family: 'Space Grotesk', monospace;
+            letter-spacing: 0.15em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .account-number-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+
+            20% {
+                left: 100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .bank-logo {
+            background: #003399;
+            color: white;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 28px;
+            border: 3px solid #000;
+            box-shadow: 4px 4px 0px 0px #000;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .brutal-shadow {
+                box-shadow: 4px 4px 0px 0px #000000;
+            }
+
+            .account-number-box {
+                font-size: 1.5rem;
+                letter-spacing: 0.1em;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            body {
+                background: white !important;
+            }
+
+            .brutal-shadow {
+                box-shadow: none !important;
+                border: 3px solid black !important;
+            }
+
+            .payment-section {
+                background: #f0f0f0 !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#F7F7F7] min-h-screen overflow-x-hidden">
+
+    <!-- Floating Decorative Elements -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden no-print">
+        <div class="absolute top-20 left-10 w-16 h-16 bg-accent-yellow brutal-shadow-sm rotate-12 animate-float" style="animation-delay: 0s;"></div>
+        <div class="absolute top-40 right-20 w-12 h-12 bg-accent-pink brutal-shadow-sm -rotate-12 animate-float" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-40 left-20 w-20 h-20 bg-accent-cyan brutal-shadow-sm rotate-45 animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 right-10 w-14 h-14 bg-accent-orange brutal-shadow-sm -rotate-6 animate-float" style="animation-delay: 0.5s;"></div>
+        <div class="absolute bottom-20 right-1/4 w-10 h-10 bg-accent-purple brutal-shadow-sm rotate-12 animate-float" style="animation-delay: 1.5s;"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative z-10 max-w-6xl mx-auto p-4 md:p-8">
+
+        <!-- Header Section -->
+        <header class="mb-12 text-center relative">
+            <div class="inline-block bg-black text-white px-6 py-2 font-display font-bold text-lg mb-4 brutal-shadow transform -rotate-2">
+                📍 SETIAP LANTAI WAJIB TAU!
+            </div>
+
+            <h1 class="font-display text-6xl md:text-8xl font-black text-black mb-4 tracking-tight leading-none">
+                <span class="block transform hover:scale-105 transition-transform cursor-default">HARA STAY</span>
+                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B9D] via-[#4ECDC4] to-[#FFE66D] transform hover:scale-105 transition-transform cursor-default">RULES</span>
+            </h1>
+
+            <div class="flex flex-wrap justify-center gap-4 mt-6">
+                <div class="bg-accent-yellow px-4 py-2 brutal-shadow font-bold text-sm md:text-base transform hover:-rotate-2 transition-transform">
+                    🏠 GEDUNG KOS BARU
+                </div>
+                <div class="bg-accent-cyan px-4 py-2 brutal-shadow font-bold text-sm md:text-base transform hover:rotate-2 transition-transform">
+                    🌄🌲🚣 VIEW DANAU
+                </div>
+                <div class="bg-accent-pink px-4 py-2 brutal-shadow font-bold text-sm md:text-base transform hover:-rotate-1 transition-transform">
+                    🔥 LOKASI STRATEGIS
+                </div>
+            </div>
+        </header>
+
+        <!-- Filter/Category Navigation -->
+        <div class="sticky top-4 z-50 mb-8 no-print">
+            <div class="bg-white brutal-shadow p-4 flex flex-wrap gap-2 justify-center">
+                <button onclick="filterRules('all')" class="filter-btn active bg-black text-white px-4 py-2 font-bold text-sm hover:scale-105 transition-transform" data-category="all">
+                    SEMUA 📋
+                </button>
+                <button onclick="filterRules('payment')" class="filter-btn bg-accent-yellow px-4 py-2 font-bold text-sm hover:scale-105 transition-transform brutal-shadow-sm" data-category="payment">
+                    💰 PEMBAYARAN
+                </button>
+                <button onclick="filterRules('facility')" class="filter-btn bg-accent-cyan px-4 py-2 font-bold text-sm hover:scale-105 transition-transform brutal-shadow-sm" data-category="facility">
+                    🔑 FASILITAS
+                </button>
+                <button onclick="filterRules('behavior')" class="filter-btn bg-accent-pink px-4 py-2 font-bold text-sm hover:scale-105 transition-transform brutal-shadow-sm" data-category="behavior">
+                    🤝 PERATURAN
+                </button>
+                <button onclick="filterRules('safety')" class="filter-btn bg-accent-purple text-white px-4 py-2 font-bold text-sm hover:scale-105 transition-transform brutal-shadow-sm" data-category="safety">
+                    🛡️ KEAMANAN
+                </button>
+            </div>
+        </div>
+
+        <!-- Rules Grid -->
+        <div id="rulesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+
+            <!-- Payment Rules -->
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="payment">
+                <div class="absolute top-0 right-0 bg-accent-yellow w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-accent-yellow transition-colors">01</span>
+                        <span class="text-2xl">💵</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight">Bayar di Muka</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">Sewa dibayar di muka saat awal masuk. Bulan berikutnya paling lambat <span class="bg-accent-yellow px-1 font-bold">H+2</span> dari tanggal masuk.</p>
+                </div>
+            </div>
+
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="payment">
+                <div class="absolute top-0 right-0 bg-accent-orange w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-accent-orange transition-colors">02</span>
+                        <span class="text-2xl">⚠️</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight">Denda Keterlambatan</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">Telat bayar = denda <span class="bg-accent-orange text-white px-2 py-0.5 font-bold brutal-shadow-sm">3%/hari</span> dari harga sewa. Akumulatif aktif!</p>
+                </div>
+            </div>
+
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="payment">
+                <div class="absolute top-0 right-0 bg-red-500 w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-red-500 transition-colors">03</span>
+                        <span class="text-2xl">🚨</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight text-red-600">Warning System</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">Telat <span class="font-bold border-b-2 border-red-500">>5 hari</span> tanpa konfirmasi? Pengelola berhak review kelanjutan sewa.</p>
+                </div>
+            </div>
+
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="payment">
+                <div class="absolute top-0 right-0 bg-accent-green w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-accent-green transition-colors">04</span>
+                        <span class="text-2xl">💬</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight">Komunikasi Itu Kunci</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">Ada kendala? <span class="bg-accent-green px-2 font-bold">SEGERA</span> hubungi pemilik/pengelola. Jangan diem aja!</p>
+                </div>
+            </div>
+
+            <!-- Facility Rules -->
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="facility">
+                <div class="absolute top-0 right-0 bg-accent-purple w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-accent-purple transition-colors">05</span>
+                        <span class="text-2xl">🔑</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight">Tanggung Jawab Kunci</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">Kunci hilang = tanggung jawab penghuni. Biaya ganti dipotong dari <span class="font-bold">deposit</span>.</p>
+                </div>
+            </div>
+
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="facility">
+                <div class="absolute top-0 right-0 bg-accent-cyan w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-accent-cyan transition-colors">06</span>
+                        <span class="text-2xl">💎</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight">Deposit Management</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">Deposit habis karena potongan? Wajib <span class="bg-accent-cyan px-2 font-bold">TOP UP</span> sesegera mungkin.</p>
+                </div>
+            </div>
+
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="facility">
+                <div class="absolute top-0 right-0 bg-accent-yellow w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-accent-yellow transition-colors">07</span>
+                        <span class="text-2xl">💰</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight">Refund Deposit</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">Deposit kembali 100% saat keluar jika <span class="font-bold">no tunggakan</span>, no hilang kunci, no kerusakan.</p>
+                </div>
+            </div>
+
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="facility">
+                <div class="absolute top-0 right-0 bg-accent-pink w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-accent-pink transition-colors">08</span>
+                        <span class="text-2xl">👥</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight">Kapasitas Kamar</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">Kamar hanya untuk penghuni terdaftar. Mau nambah? <span class="bg-accent-pink text-white px-2 font-bold brutal-shadow-sm">KONFIRMASI DULU</span>!</p>
+                </div>
+            </div>
+
+            <!-- Behavior Rules -->
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="behavior">
+                <div class="absolute top-0 right-0 bg-accent-orange w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-accent-orange transition-colors">09</span>
+                        <span class="text-2xl">🚫</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight">Tamu & Menginap</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">Tamu <span class="font-bold text-red-600">DILARANG</span> menginap tanpa izin. Berkunjung sewajarnya & jaga kenyamanan penghuni lain.</p>
+                </div>
+            </div>
+
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="behavior">
+                <div class="absolute top-0 right-0 bg-accent-cyan w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-accent-cyan transition-colors">10</span>
+                        <span class="text-2xl">🚗</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight">Parkir Mobil Tamu</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">Parkir mobil tamu hanya <span class="bg-accent-cyan px-2 font-bold">SINGKAT</span>. Menginap? Pakai lahan sewa terpisah.</p>
+                </div>
+            </div>
+
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="behavior">
+                <div class="absolute top-0 right-0 bg-accent-green w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-accent-green transition-colors">11</span>
+                        <span class="text-2xl">✨</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight">Clean Vibes Only</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">Wajib jaga kebersihan kamar & area bersama: <span class="font-bold">dapur, lorong, mushola, parkir motor</span>.</p>
+                </div>
+            </div>
+
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="behavior">
+                <div class="absolute top-0 right-0 bg-blue-400 w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-blue-400 transition-colors">12</span>
+                        <span class="text-2xl">💧</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight">Hemat Air</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">Gunakan air <span class="bg-blue-400 text-white px-2 font-bold brutal-shadow-sm">BIJAK</span>. Earth is healing, let's keep it that way! 🌍</p>
+                </div>
+            </div>
+
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="behavior">
+                <div class="absolute top-0 right-0 bg-indigo-500 w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-indigo-500 transition-colors">13</span>
+                        <span class="text-2xl">🔇</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight">Quiet Hours</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed"><span class="font-bold border-b-2 border-indigo-500">DILARANG</span> keributan, especially malam hari. Respect others' peace!</p>
+                </div>
+            </div>
+
+            <!-- Safety & Security -->
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="safety">
+                <div class="absolute top-0 right-0 bg-red-500 w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-red-500 transition-colors">14</span>
+                        <span class="text-2xl">🛠️</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight text-red-600">No Vandalism</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">Dilarang merusak fasilitas! Kerusakan karena kelalaian = <span class="font-bold">tanggung jawab penghuni</span>.</p>
+                </div>
+            </div>
+
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="safety">
+                <div class="absolute top-0 right-0 bg-accent-purple w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-accent-purple transition-colors">15</span>
+                        <span class="text-2xl">🔐</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight">Jangan Share Kunci!</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">Dilarang pinjamkan kunci ke orang lain <span class="font-bold">tanpa izin</span>. Security first!</p>
+                </div>
+            </div>
+
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="safety">
+                <div class="absolute top-0 right-0 bg-gray-800 w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-gray-800 transition-colors">16</span>
+                        <span class="text-2xl">📹</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight">CCTV 24/7</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">CCTV aktif 24 jam, tapi <span class="bg-gray-200 px-2 font-bold">barang pribadi tetap tanggung jawab masing-masing</span>.</p>
+                </div>
+            </div>
+
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="safety">
+                <div class="absolute top-0 right-0 bg-accent-yellow w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-accent-yellow transition-colors">17</span>
+                        <span class="text-2xl">🔒</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight">Always Lock</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">Pintu lorong & pagar wajib <span class="bg-accent-yellow px-2 font-bold brutal-shadow-sm">DIKUNCI</span> kembali setelah digunakan.</p>
+                </div>
+            </div>
+
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden" data-category="facility">
+                <div class="absolute top-0 right-0 bg-accent-pink w-20 h-20 -mr-10 -mt-10 rotate-45"></div>
+                <div class="relative z-10">
+                    <div class="flex items-start justify-between mb-3">
+                        <span class="font-display text-4xl font-black text-gray-200 group-hover:text-accent-pink transition-colors">18</span>
+                        <span class="text-2xl">📋</span>
+                    </div>
+                    <h3 class="font-display font-bold text-xl mb-2 leading-tight">Konfirmasi Pindah</h3>
+                    <p class="text-sm text-gray-700 leading-relaxed">Mau pindah? Konfirmasi minimal <span class="bg-accent-pink text-white px-3 py-1 font-bold brutal-shadow-sm">7 HARI</span> sebelumnya.</p>
+                </div>
+            </div>
+
+            <div class="rule-card group bg-white brutal-shadow p-6 relative overflow-hidden md:col-span-2 lg:col-span-3 border-4 border-red-500" data-category="safety">
+                <div class="absolute inset-0 bg-red-50 pattern-lines opacity-50"></div>
+                <div class="relative z-10 flex flex-col md:flex-row items-center gap-4">
+                    <div class="text-6xl animate-wiggle">🚫</div>
+                    <div class="flex-1 text-center md:text-left">
+                        <div class="flex items-start justify-between mb-2">
+                            <span class="font-display text-5xl font-black text-red-200">19</span>
+                            <span class="bg-red-500 text-white px-3 py-1 text-xs font-bold brutal-shadow-sm">ZERO TOLERANCE</span>
+                        </div>
+                        <h3 class="font-display font-bold text-2xl mb-2 text-red-600">Dilarang Keras!</h3>
+                        <p class="text-base text-gray-800 leading-relaxed font-medium">
+                            Kamar dilarang digunakan untuk aktivitas <span class="bg-red-500 text-white px-2 py-1 font-bold">MELANGGAR HUKUM</span>: narkoba, tindakan kriminal, atau aktivitas mengganggu ketertiban.
+                            <span class="block mt-2 text-red-600 font-bold">Langsung ditindak tegas!</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ENHANCED Payment Info Section -->
+        <div class="payment-section brutal-shadow p-8 md:p-12 mb-12 relative">
+            <!-- Decorative Elements -->
+            <div class="absolute top-4 left-4 text-6xl opacity-20 rotate-12">💸</div>
+            <div class="absolute bottom-4 right-4 text-6xl opacity-20 -rotate-12">🏦</div>
+
+            <div class="relative z-10">
+                <!-- Header -->
+                <div class="text-center mb-8">
+                    <div class="inline-block bg-black text-white px-6 py-2 font-display font-bold text-xl mb-4 brutal-shadow transform -rotate-1">
+                        💳 INFO PEMBAYARAN
+                    </div>
+                    <h2 class="font-display text-3xl md:text-5xl font-black text-white drop-shadow-lg mb-2" style="-webkit-text-stroke: 2px black;">
+                        TRANSFER KE REKENING
+                    </h2>
+                    <p class="text-white font-bold text-lg drop-shadow-md">Pastikan transfer ke nomor rekening resmi di bawah ini:</p>
+                </div>
+
+                <!-- Main Payment Card -->
+                <div class="payment-card max-w-3xl mx-auto p-8 md:p-10 brutal-shadow">
+                    <div class="flex flex-col md:flex-row items-center gap-6 md:gap-10">
+
+                        <!-- Bank Logo Section -->
+                        <div class="flex-shrink-0">
+                            <div class="bank-logo">M</div>
+                            <div class="mt-3 text-center font-bold text-lg">Bank Mandiri</div>
+                        </div>
+
+                        <!-- Account Details -->
+                        <div class="flex-1 w-full">
+                            <!-- Account Number - HIGHLY VISIBLE -->
+                            <div class="mb-6">
+                                <label class="block text-gray-500 font-bold text-sm mb-2 uppercase tracking-wider">Nomor Rekening</label>
+                                <div class="account-number-box text-3xl md:text-4xl font-black py-4 px-6 rounded-lg brutal-shadow text-center md:text-left">
+                                    1660 0002 15822
+                                </div>
+                            </div>
+
+                            <!-- Account Name -->
+                            <div class="mb-6">
+                                <label class="block text-gray-500 font-bold text-sm mb-2 uppercase tracking-wider">Atas Nama</label>
+                                <div class="bg-gray-100 border-3 border-black px-4 py-3 font-display text-2xl font-bold brutal-shadow-sm">
+                                    KIKI MULKIYANTI
+                                </div>
+                            </div>
+
+                             Copy Button 
+                                <button onclick="copyToClipboard('1660000215822')" class="w-full bg-accent-yellow hover:bg-yellow-300 text-black border-3 border-black py-4 font-bold text-lg brutal-shadow hover:translate-y-[-2px] transition-all flex items-center justify-center gap-3 group">
+                                    <span>SALIN NOMOR REKENING</span>
+                                    <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Security Notice -->
+                        <div class="mt-6 pt-6 border-t-2 border-gray-200 flex items-center gap-3 text-sm text-gray-600 bg-gray-50 p-4 rounded">
+                            <span class="text-2xl">⚠️</span>
+                            <span class="font-medium">Pastikan nama rekening sesuai sebelum transfer. Jika ada yang meminta transfer ke rekening lain, segera lapor!</span>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="flex flex-wrap justify-center gap-4 mt-8">
+                        <!--<div class="bg-white/90 backdrop-blur px-6 py-3 brutal-shadow-sm font-bold text-sm flex items-center gap-2">-->
+                        <!--    <span>📱</span>-->
+                        <!--    <span>Simpan screenshot halaman ini</span>-->
+                        <!--</div>-->
+                        <div class="bg-white/90 backdrop-blur px-6 py-3 brutal-shadow-sm font-bold text-sm flex items-center gap-2">
+                            <span>⏰</span>
+                            <span>Bayar sebelum H+2 setiap bulannya</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="text-center pb-8">
+                <div class="inline-block bg-black text-white px-8 py-4 brutal-shadow rotate-1">
+                    <p class="font-display font-bold text-xl">TERIMA KASIH ATAS KERJASAMANYA! 🤝</p>
+                    <p class="text-sm mt-2 opacity-80">Let's make this boarding house a great place to live!</p>
+                </div>
+                <div class="mt-8 flex justify-center gap-3 text-3xl">
+                    <span class="animate-bounce" style="animation-delay: 0s;">🏠</span>
+                    <span class="animate-bounce" style="animation-delay: 0.1s;">💙</span>
+                    <span class="animate-bounce" style="animation-delay: 0.2s;">✨</span>
+                    <span class="animate-bounce" style="animation-delay: 0.3s;">🔥</span>
+                    <span class="animate-bounce" style="animation-delay: 0.4s;">🚀</span>
+                </div>
+            </footer>
+
+            <!-- Toast Notification -->
+            <div id="toast" class="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-black text-white px-8 py-4 brutal-shadow opacity-0 transition-opacity duration-300 pointer-events-none z-50 font-bold text-lg flex items-center gap-2">
+                <span class="text-2xl">✅</span>
+                <span>Nomor rekening disalin!</span>
+            </div>
+        </div>
+
+        <script>
+            // Filter Functionality
+            function filterRules(category) {
+                const cards = document.querySelectorAll('.rule-card');
+                const buttons = document.querySelectorAll('.filter-btn');
+
+                // Update buttons
+                buttons.forEach(btn => {
+                    if (btn.dataset.category === category) {
+                        btn.classList.add('bg-black', 'text-white');
+                        btn.classList.remove('brutal-shadow-sm');
+                    } else {
+                        btn.classList.remove('bg-black', 'text-white');
+                        btn.classList.add('brutal-shadow-sm');
+                    }
+                });
+
+                // Filter cards with animation
+                cards.forEach((card, index) => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.classList.add('animate-slide-in');
+                        }, index * 50);
+                    } else {
+                        card.style.display = 'none';
+                        card.classList.remove('animate-slide-in');
+                    }
+                });
+            }
+
+            // Copy to Clipboard
+            function copyToClipboard(text) {
+                navigator.clipboard.writeText(text).then(() => {
+                    const toast = document.getElementById('toast');
+                    toast.classList.remove('opacity-0');
+                    setTimeout(() => {
+                        toast.classList.add('opacity-0');
+                    }, 2500);
+                });
+            }
+
+            // Add click interaction to cards
+            document.querySelectorAll('.rule-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    document.querySelectorAll('.rule-card').forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    setTimeout(() => {
+                        this.classList.remove('active');
+                    }, 300);
+                });
+            });
+
+            // Initialize animations on load
+            window.addEventListener('load', () => {
+                const cards = document.querySelectorAll('.rule-card');
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('animate-slide-in');
+                    }, index * 100);
+                });
+            });
+        </script>
+</body>
+
+</html>
